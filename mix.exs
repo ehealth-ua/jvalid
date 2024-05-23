@@ -1,15 +1,15 @@
 defmodule JValid.Mixfile do
   use Mix.Project
 
-  @version "1.0.0"
+  @version "1.0.1"
 
   def project do
     [
-      app: :jvalid,
+      app: :jvalid2,
       description: "Json Schema validation helper, that allows to store schemes in a separate files.",
       package: package(),
       version: @version,
-      elixir: "~> 1.7",
+      elixir: "~> 1.4",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [] ++ Mix.compilers(),
       build_embedded: Mix.env() == :prod,
@@ -25,7 +25,7 @@ defmodule JValid.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :nex_json_schema, :jason]]
+    [extra_applications: [:logger, :nex_json_schema2, :jason]]
   end
 
   # Specifies which paths to compile per environment.
@@ -47,22 +47,23 @@ defmodule JValid.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:jason, "~> 1.1"},
-      {:nex_json_schema, ">= 0.8.0"},
-      {:benchfella, "~> 0.3", only: [:dev, :test]},
-      {:ex_doc, ">= 0.0.0", only: [:dev, :test]},
       {:excoveralls, "~> 0.11.2", only: [:dev, :test]},
-      {:credo, ">= 0.4.8", only: [:dev, :test]}
+      {:credo, "~> 1.6.1", only: [:dev, :test]},
+      {:nex_json_schema2, "~> 0.8.7"},
+      {:earmark, "~> 1.4.46", only: [:dev, :test]},
+      {:jason, "~> 1.3.0", only: [:dev, :test]},
+      {:ex_doc, "~> 0.11", only: [:dev, :test]},
+      {:benchfella, "~> 0.3", only: [:dev, :test]}
     ]
   end
 
   # Settings for publishing in Hex package manager:
   defp package do
     [
-      contributors: ["Nebo #15"],
-      maintainers: ["Nebo #15"],
+      contributors: ["NHSU"],
+      maintainers: ["NHSU"],
       licenses: ["LISENSE.md"],
-      links: %{github: "https://github.com/Nebo15/jvalid"},
+      links: %{github: "https://github.com/ehealth-ua/jvalid"},
       files: ~w(lib LICENSE.md mix.exs README.md)
     ]
   end
